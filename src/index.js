@@ -44,7 +44,6 @@ function catHandler() {
           0: { description, temperament, name },
         },
       } = data[0];
-      console.log(url, description, temperament, name);
       selectors.catInfoEl.innerHTML = `<div class="thumb">
           <img src="${url}" alt="${name}" class="image"></div>
           <h2 class="catName">${name}</h2>
@@ -57,8 +56,7 @@ function catHandler() {
       console.log(error);
       hideLoader();
       Notiflix.Notify.failure(selectors.errorEl.textContent);
-    })
-    .finally(() => {});
+    });
 }
 
 function showLoader() {
