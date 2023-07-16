@@ -6,6 +6,7 @@
   width: 100px;
   height: 100px;
   font-size: 0;
+  overflow: hidden;
 }
 
 .loader:before,
@@ -31,13 +32,21 @@
 }
 
 .error {
-  visibility: hidden;
+  display: none;
+}
+
+.cat-info {
+  text-align: center;
+  border-radius: 5px;
+  background-color: #b5d4f7;
 }
 
 .thumb {
+  margin-left: auto;
+  margin-right: auto;
   position: relative;
   height: 640px;
-  width: 100%;
+  width: 640px;
   border: 2px solid #2a2a2a;
   border-radius: 4px;
 }
@@ -49,12 +58,12 @@
 }
 
 .catName {
-  text-align: center;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bold;
 }
 
 .description,
 .temperament {
   font-size: 20px;
+  padding-bottom: 10px;
 }
