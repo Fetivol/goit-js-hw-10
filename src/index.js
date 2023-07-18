@@ -9,13 +9,15 @@ const selectors = {
   errorEl: document.querySelector('.error'),
   loaderEl: document.querySelector('.loader'),
 };
-
+selectors.breedEl.style.visibility = 'hidden';
 selectors.breedEl.addEventListener('change', catHandler);
 
 function breedHandler() {
+  showLoader();
   fetchBreeds()
     .then(data => {
-      showLoader();
+      selectors.breedEl.style.visibility = 'visible';
+      hideLoader();
       const selectorOptions = data
         .map(({ id, name }) => {
           return `<option value="${id}">${name}</option>`;
@@ -25,7 +27,6 @@ function breedHandler() {
       new SlimSelect({
         select: '.breed-select',
       });
-      hideLoader();
     })
     .catch(error => {
       console.log(error);
@@ -35,9 +36,12 @@ function breedHandler() {
 }
 
 function catHandler() {
+  selectors.breedEl.style.visibility = 'hidden';
   showLoader();
   fetchCatByBreed(selectors.breedEl.value)
     .then(data => {
+      selectors.breedEl.style.visibility = 'visible';
+      hideLoader();
       let {
         url,
         breeds: {
@@ -50,7 +54,6 @@ function catHandler() {
           <p class="description"><b>Description:</b> ${description}</p>
           <p class="temperament"><b>Temperament:</b> ${temperament}</p>
           `;
-      hideLoader();
     })
     .catch(error => {
       console.log(error);
@@ -62,9 +65,11 @@ function catHandler() {
 function showLoader() {
   selectors.catInfoEl.innerHTML = '';
   selectors.loaderEl.style.display = 'block';
+  //   selectors.breedEl.style.visibility = 'hidden';
 }
 function hideLoader() {
   selectors.loaderEl.style.display = 'none';
+  //   selectors.breedEl.style.visibility = 'visible';
 }
 
 breedHandler();
